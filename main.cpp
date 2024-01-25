@@ -11,34 +11,37 @@ int main(int argc, char* argv[]) {
     // process command line arguments first and error if improper
     // if filename given, make sure file is readable, error otherwise
     // set up keyboard processing so that below this point there is only one version of the code
+
+    //Holds each individual word prior to being placed into the tree.
     std::vector<std::string_view> preTreeInput;
 
+    std::string fileName;
+
+    //If there are no provided args, initiate place user input into a temporary file
+    if(argc <= 1) {
+        static std::ofstream defaultFile;
+        fileName = "default.txt";
+        defaultFile.open(fileName, std::ios::out);
+
+        std::string userInput;
+        std::cout << "Please enter your input: ";
+        std::cin >> userInput;
+
+        defaultFile << userInput;
+        defaultFile.close();
+
+        std::cout << "\nDefault file has received input.\n";
+    }
+    else {
+        std::string fileName = argv[1];
+    }
+
     try {
-        //If there are no provided args, initiate place user input into a temporary file
-        if(argc <= 1) {
-            static std::ofstream defaultFile;
-            defaultFile.open("default.txt", std::ios::out);
-
-            std::string userInput;
-            std::cout << "Please enter your input: ";
-            std::cin >> userInput;
-
-            defaultFile << userInput;
-            defaultFile.close();
-
-            std::cout << "\nDefault file has received input.\n";
-
-            readFromFile("default.txt", &preTreeInput);
-        }
-        else {
-            std::string fileName = argv[1];
-            readFromFile(fileName, &preTreeInput);
-        }
+        readFromFile(fileName, &preTreeInput);
     } catch(const std::exception& ex) {
         std::cerr << ex.what() << '\n';
     }
     
-
     for(const auto& arg : args) {
         node::node_t *root = tree::buildTree(file);
     }
@@ -68,4 +71,6 @@ void readFromFile(std::string_view filename, std::vector<std::string_view>* inpu
     else {
         throw std::runtime_error("ERROR: could not open file");
     }
+
+    std::cout << "File read complete. preTreeInput vector has been filled";
 }
