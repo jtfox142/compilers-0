@@ -10,7 +10,7 @@
 
 namespace {
 
-    static std::vector<std::string_view> _userInput;
+    static std::vector<std::string_view> _preTreeInput;
     static bool _fileFlagSet = false;
 
 } //namespace
@@ -19,7 +19,7 @@ void inputParsing::parse(int argc, char* argv[]) {
     const std::vector<std::string_view> args(argv + 1, argv + argc);
 
     for(const auto& arg : args) {
-        if(_userInput.empty()) {
+        if(_preTreeInput.empty()) {
             if(arg == "-f" || arg == "--filename") {
                 if(_fileFlagSet) {
                     throw std::runtime_error("ERROR: the -f/--filename parameter cannot be used twice.");
@@ -50,7 +50,7 @@ void readFromFile(std::string_view filename) {
             }
 
             inputFile >> word;
-            _userInput.push_back(word);
+            _preTreeInput.push_back(word);
         }
     }
     else {
@@ -59,5 +59,5 @@ void readFromFile(std::string_view filename) {
 }
 
 const std::vector<std::string_view>& inputParsing::userInput() {
-    return _userInput;
+    return _preTreeInput;
 }

@@ -6,16 +6,17 @@
 namespace node {
 
     class Node {
+        //All these gets might be useless. If you return a pointer from a get, you typically want it to be immutable (const).
+        //However, in order to assign it to the tempNode in tree.cpp, it cannot return a const because the types are incompatible
         public:
-            Node(std::string_view val) {
-                *data = val;
+            inline Node(std::string_view val) {
+                data = val;
                 leftChild = NULL;
                 rightChild = NULL;
                 middleChild = NULL;
             }
 
-            //When returning a pointer from a getter function, it should be immutable (const)
-            const Node* getLeftChild() {
+            Node* getLeftChild() {
                 return leftChild;
             }
 
@@ -23,7 +24,7 @@ namespace node {
                 leftChild = new Node(val);
             }
 
-            const Node* getRightChild() {
+            Node* getRightChild() {
                 return rightChild;
             }
 
@@ -31,7 +32,7 @@ namespace node {
                 rightChild = new Node(val);
             }
 
-            const Node* getMiddleChild() {
+            Node* getMiddleChild() {
                 return middleChild;
             }
 
@@ -39,8 +40,12 @@ namespace node {
                 middleChild = new Node(val);
             }
 
+            const std::string_view getData() {
+                return data;
+            }
+
         private:
-            std::string_view* data;
+            std::string_view data;
             Node* leftChild;
             Node* rightChild;
             Node* middleChild;

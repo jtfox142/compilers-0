@@ -1,19 +1,28 @@
 #include <iostream>
-#include <vector>
+#include <deque>
 #include <string_view>
 #include <string>
 #include <stdexcept>
 #include <fstream>
 //#include "node.h"
-//#include "tree.h"
+#include "tree.hpp"
 
 int main(int argc, char* argv[]) {
     // process command line arguments first and error if improper
     // if filename given, make sure file is readable, error otherwise
     // set up keyboard processing so that below this point there is only one version of the code
 
+    /*
+    TODO
+        * Pull input parsing out into its own file
+            * Error upon bad input (like % or $) 
+        * Tree functions
+            * Build tree
+            * Traversals
+    */
+
     //Holds each individual word prior to being placed into the tree.
-    std::vector<std::string_view> preTreeInput;
+    std::deque<std::string_view> preTreeInput;
 
     std::string fileName;
 
@@ -42,9 +51,7 @@ int main(int argc, char* argv[]) {
         std::cerr << ex.what() << '\n';
     }
     
-    for(const auto& arg : args) {
-        node::node_t *root = tree::buildTree(file);
-    }
+    node::Node *root = tree::buildTree(preTreeInput);
 
     tree::printPreorder(root);
     tree::printInorder(root);
@@ -72,5 +79,5 @@ void readFromFile(std::string_view filename, std::vector<std::string_view>* inpu
         throw std::runtime_error("ERROR: could not open file");
     }
 
-    std::cout << "File read complete. preTreeInput vector has been filled";
+    std::cout << "File read complete. preTreeInput deque has been filled";
 }
