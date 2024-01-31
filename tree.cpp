@@ -1,5 +1,8 @@
 #include "node.hpp"
 #include "tree.hpp"
+
+#include <iostream>
+#include <iomanip>
 #include <stdexcept>
 
 node::Node* buildTree(std::deque<std::string_view> preTreeInput) {
@@ -42,12 +45,24 @@ node::Node* buildTree(std::deque<std::string_view> preTreeInput) {
     return root;
 }
 
-void tree::printPreorder(node::Node* root) {
+//root, left, middle, right
+static void printPreorder(node::Node *root, int level) {
+    if (root==NULL) return;
+
+    //TODO Change 9 to a variable or something.
+    std::cout << std::setw(level * 2) << level << std::setw(9) << root->getData() << std::endl;
+
+    printPreorder(root->getLeftChild(), level+1);
+    printPreorder(root->getRightChild(), level+1);
+}
+
+//left, root (taking you down middle), right
+void tree::printInorder(node::Node* root, int level) {
 
 }
-void tree::printInorder(node::Node* root) {
+
+//left, middle, right, root
+void tree::printPostorder(node::Node* root, int level) {
 
 }
-void tree::printPostorder(node::Node* root) {
 
-}

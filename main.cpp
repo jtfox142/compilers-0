@@ -54,8 +54,10 @@ int main(int argc, char* argv[]) {
     node::Node *root = tree::buildTree(preTreeInput);
 
     printToTerminal(preTreeInput);
+    
+    tree::printPreorder(root, 0);
+
     /*
-    tree::printPreorder(root);
     tree::printInorder(root);
     tree::printPostorder(root);
     */
