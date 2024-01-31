@@ -53,14 +53,17 @@ int main(int argc, char* argv[]) {
     
     node::Node *root = tree::buildTree(preTreeInput);
 
+    printToTerminal(preTreeInput);
+    /*
     tree::printPreorder(root);
     tree::printInorder(root);
     tree::printPostorder(root);
+    */
 
     return 0;
 }
 
-void readFromFile(std::string_view filename, std::vector<std::string_view>* input) {
+void readFromFile(std::string_view filename, std::deque<std::string_view>* input) {
     static std::ifstream inputFile (filename);
     std::string word;
 
@@ -80,4 +83,12 @@ void readFromFile(std::string_view filename, std::vector<std::string_view>* inpu
     }
 
     std::cout << "File read complete. preTreeInput deque has been filled";
+}
+
+//For testing purposes only, delete later.
+void printToTerminal(std::deque<std::string_view> preTreeInput) {
+    std::cout << "Printing preTreeInput to terminal." << std::endl;
+
+    for(auto it : preTreeInput)
+        std::cout << it << std::endl;
 }
