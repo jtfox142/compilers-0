@@ -27,8 +27,9 @@ int main(int argc, char* argv[]) {
     std::string fileName;
 
     //If there are no provided args, initiate place user input into a temporary file
+    //The first argument should always be the path to the program
     if(argc <= 1) {
-        static std::ofstream defaultFile;
+        std::ofstream defaultFile;
         fileName = "default.txt";
         defaultFile.open(fileName, std::ios::out);
 
@@ -41,10 +42,11 @@ int main(int argc, char* argv[]) {
 
         std::cout << "\nDefault file has received input.\n";
     }
-    else {
+    else { //Otherwise, attempt to use the filename provided to the executable
         std::string fileName = argv[1];
     }
 
+    //
     try {
         readFromFile(fileName, &preTreeInput);
     } catch(const std::exception& ex) {
@@ -65,13 +67,14 @@ int main(int argc, char* argv[]) {
     return 0;
 }
 
+//Pushes file data onto a deque, which is then used to build the tree
 void readFromFile(std::string_view filename, std::deque<std::string_view>* input) {
-    static std::ifstream inputFile (filename);
+    std::ifstream inputFile (filename);
     std::string word;
 
     if(inputFile.is_open()) {
         while(!inputFile.eof()) {
-            //Not sure I need to do this every time, but the files should be small enough that the extra overhead will not matter
+            //Not sure if I need to do this every time, but the files should be small enough that the extra overhead will not matter
             if(inputFile.bad() || inputFile.fail()) {
                 throw std::runtime_error("ERROR: bad file read");
             }

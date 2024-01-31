@@ -7,9 +7,9 @@
 #include <string_view>
 
 namespace tree {
-    void printPreorder(node::Node*);
-    void printInorder(node::Node*);
-    void printPostorder(node::Node*);
+    void printPreorder(node::Node*, int);
+    void printInorder(node::Node*, int);
+    void printPostorder(node::Node*, int);
 
     node::Node* buildTree(std::deque<std::string_view>);
 }

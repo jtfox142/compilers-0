@@ -46,7 +46,7 @@ node::Node* buildTree(std::deque<std::string_view> preTreeInput) {
 }
 
 //root, left, middle, right
-static void printPreorder(node::Node *root, int level) {
+void printPreorder(node::Node *root, int level) {
     if (root==NULL) return;
 
     //TODO Change 9 to a variable or something.
