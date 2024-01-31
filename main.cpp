@@ -62,9 +62,10 @@ int main(int argc, char* argv[]) {
     node::Node *root = tree::buildTree(preTreeInput);
 
     printToTerminal(preTreeInput);
-    /*
-    tree::printPreorder(root, 0);
 
+    std::cout << "Printing preorder tree traversal." << std::endl;
+    tree::printPreorder(root, 0);
+    /*
     
     tree::printInorder(root);
     tree::printPostorder(root);
