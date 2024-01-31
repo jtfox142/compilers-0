@@ -1,5 +1,5 @@
-*.o
-
 main
+*.o
+default.txt
 
 .vscode

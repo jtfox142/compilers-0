@@ -39,7 +39,9 @@ int main(int argc, char* argv[]) {
 
         std::string userInput;
         std::cout << "Please enter your input: ";
-        std::cin >> userInput;
+        std::getline(std::cin, userInput);
+
+        std::cout << "\nuserInput variable contents: " << userInput << std::endl;
 
         defaultFile << userInput;
         defaultFile.close();
@@ -91,7 +93,7 @@ void readFromFile(std::string filename, std::deque<std::string>* input) {
         throw std::runtime_error("ERROR: could not open file");
     }
 
-    std::cout << "File read complete. preTreeInput deque has been filled";
+    std::cout << "File read complete. preTreeInput deque has been filled." << std::endl;
 }
 
 //For testing purposes only, delete later.
