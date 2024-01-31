@@ -14,9 +14,10 @@ node::Node* buildTree(std::deque<std::string> preTreeInput) {
         throw std::runtime_error("ERROR: Input processing error. Root of the tree is null.");
     }
 
-    //I know I could just use "auto" in a for loop declaration, but this helps me visualize
+    //Compiler won't allow 'auto'
     std::deque<std::string>::iterator iterator;
 
+    //Iterator points to one word of input at a time
     for(iterator = preTreeInput.begin(); iterator != preTreeInput.end(); iterator++) {
         //temporary node for traversal
         static node::Node* tempNode = root;

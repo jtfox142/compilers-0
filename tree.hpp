@@ -8,11 +8,11 @@
 
 namespace tree {
 
+    node::Node* buildTree(std::deque<std::string>);
+
     void printPreorder(node::Node*, int);
     void printInorder(node::Node*, int);
     void printPostorder(node::Node*, int);
-
-    node::Node* buildTree(std::deque<std::string>);
 
 } //namespace tree
 
