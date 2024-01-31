@@ -93,6 +93,8 @@ void readFromFile(std::string filename, std::deque<std::string>* input) {
 void printToTerminal(std::deque<std::string> preTreeInput) {
     std::cout << "Printing preTreeInput to terminal." << std::endl;
 
-    for(auto it : preTreeInput)
-        std::cout << it << std::endl;
+    std::deque<std::string>::iterator iterator;
+
+    for(iterator = preTreeInput.begin(); iterator != preTreeInput.end(); iterator++)
+        std::cout << *iterator << std::endl;
 }
