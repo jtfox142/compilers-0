@@ -5,7 +5,7 @@
 #include <iomanip>
 #include <stdexcept>
 
-node::Node* buildTree(std::deque<std::string> preTreeInput) {
+node::Node* tree::buildTree(std::deque<std::string> preTreeInput) {
     node::Node* root = new node::Node(preTreeInput.front());
     preTreeInput.pop_front();
 
@@ -47,7 +47,7 @@ node::Node* buildTree(std::deque<std::string> preTreeInput) {
 }
 
 //root, left, middle, right
-void printPreorder(node::Node *root, int level) {
+void tree::printPreorder(node::Node *root, int level) {
     if (root==NULL) return;
 
     //TODO Change 9 to a variable or something.

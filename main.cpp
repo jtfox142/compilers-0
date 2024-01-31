@@ -3,7 +3,7 @@
 #include <string>
 #include <stdexcept>
 #include <fstream>
-//#include "node.h"
+#include "node.hpp"
 #include "tree.hpp"
 
 //Function prototypes
@@ -60,10 +60,10 @@ int main(int argc, char* argv[]) {
     node::Node *root = tree::buildTree(preTreeInput);
 
     printToTerminal(preTreeInput);
-    
+    /*
     tree::printPreorder(root, 0);
 
-    /*
+    
     tree::printInorder(root);
     tree::printPostorder(root);
     */
