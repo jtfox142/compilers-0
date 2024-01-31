@@ -8,5 +8,5 @@ main: main.o tree.o
 main.o: main.cpp tree.hpp
 	$(CC) $(CFLAGS) -c main.cpp
 
-tree.o: tree.hpp node.hpp
+tree.o: tree.cpp tree.hpp node.hpp
 	$(CC) $(CFLAGS) -c tree.cpp
