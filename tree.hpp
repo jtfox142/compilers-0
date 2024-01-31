@@ -14,7 +14,7 @@ namespace tree {
     void printInorder(node::Node*, int);
     void printPostorder(node::Node*, int);
 
-    void insert(std::string, node::Node*);
+    node::Node* insert(std::string, node::Node*);
 
 } //namespace tree
 
