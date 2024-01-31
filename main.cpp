@@ -6,6 +6,10 @@
 //#include "node.h"
 #include "tree.hpp"
 
+//Function prototypes
+void readFromFile(std::string, std::deque<std::string>*);
+void printToTerminal(std::deque<std::string>);
+
 int main(int argc, char* argv[]) {
     // process command line arguments first and error if improper
     // if filename given, make sure file is readable, error otherwise
@@ -30,7 +34,8 @@ int main(int argc, char* argv[]) {
     if(argc <= 1) {
         std::ofstream defaultFile;
         fileName = "default.txt";
-        defaultFile.open(fileName, std::ios::out);
+        //Need to convert string to c string for .open() function call
+        defaultFile.open(fileName.c_str(), std::ios::out | std::ios::trunc);
 
         std::string userInput;
         std::cout << "Please enter your input: ";
@@ -68,7 +73,7 @@ int main(int argc, char* argv[]) {
 
 //Pushes file data onto a deque, which is then used to build the tree
 void readFromFile(std::string filename, std::deque<std::string>* input) {
-    std::ifstream inputFile (filename);
+    std::ifstream inputFile (filename.c_str());
     std::string word;
 
     if(inputFile.is_open()) {
