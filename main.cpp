@@ -1,6 +1,5 @@
 #include <iostream>
 #include <deque>
-#include <string_view>
 #include <string>
 #include <stdexcept>
 #include <fstream>
@@ -22,7 +21,7 @@ int main(int argc, char* argv[]) {
     */
 
     //Holds each individual word prior to being placed into the tree.
-    std::deque<std::string_view> preTreeInput;
+    std::deque<std::string> preTreeInput;
 
     std::string fileName;
 
@@ -68,7 +67,7 @@ int main(int argc, char* argv[]) {
 }
 
 //Pushes file data onto a deque, which is then used to build the tree
-void readFromFile(std::string_view filename, std::deque<std::string_view>* input) {
+void readFromFile(std::string filename, std::deque<std::string>* input) {
     std::ifstream inputFile (filename);
     std::string word;
 
@@ -91,7 +90,7 @@ void readFromFile(std::string_view filename, std::deque<std::string_view>* input
 }
 
 //For testing purposes only, delete later.
-void printToTerminal(std::deque<std::string_view> preTreeInput) {
+void printToTerminal(std::deque<std::string> preTreeInput) {
     std::cout << "Printing preTreeInput to terminal." << std::endl;
 
     for(auto it : preTreeInput)

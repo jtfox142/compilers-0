@@ -5,7 +5,7 @@
 #include <iomanip>
 #include <stdexcept>
 
-node::Node* buildTree(std::deque<std::string_view> preTreeInput) {
+node::Node* buildTree(std::deque<std::string> preTreeInput) {
     node::Node* root = new node::Node(preTreeInput.front());
     preTreeInput.pop_front();
 
@@ -15,7 +15,7 @@ node::Node* buildTree(std::deque<std::string_view> preTreeInput) {
     }
 
     //I know I could just use "auto" in a for loop declaration, but this helps me visualize
-    std::deque<std::string_view>::iterator iterator;
+    std::deque<std::string>::iterator iterator;
 
     for(iterator = preTreeInput.begin(); iterator != preTreeInput.end(); iterator++) {
         //temporary node for traversal
@@ -24,7 +24,7 @@ node::Node* buildTree(std::deque<std::string_view> preTreeInput) {
         //Find where the new node should go
         while(tempNode != NULL) {
             //Get the value that the current node is holding
-            std::string_view tempData = tempNode->getData();
+            std::string tempData = tempNode->getData();
 
             //Compare the new value to the current value
             if((*iterator).at(0) < tempData.at(0)) {

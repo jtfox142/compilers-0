@@ -1,7 +1,7 @@
 #ifndef NODE_H
 #define NODE_H
 
-#include <string_view>
+#include <string>
 
 namespace node {
 
@@ -9,7 +9,7 @@ namespace node {
         //All these gets might be useless. If you return a pointer from a get, you typically want it to be immutable (const).
         //However, in order to assign it to the tempNode in tree.cpp, it cannot return a const because the types are incompatible
         public:
-            inline Node(std::string_view val) {
+            inline Node(std::string val) {
                 data = val;
                 leftChild = NULL;
                 rightChild = NULL;
@@ -20,7 +20,7 @@ namespace node {
                 return leftChild;
             }
 
-            void setLeftChild(std::string_view val) {
+            void setLeftChild(std::string val) {
                 leftChild = new Node(val);
             }
 
@@ -28,7 +28,7 @@ namespace node {
                 return rightChild;
             }
 
-            void setRightChild(std::string_view val) {
+            void setRightChild(std::string val) {
                 rightChild = new Node(val);
             }
 
@@ -36,16 +36,16 @@ namespace node {
                 return middleChild;
             }
 
-            void setMiddleChild(std::string_view val) {
+            void setMiddleChild(std::string val) {
                 middleChild = new Node(val);
             }
 
-            const std::string_view getData() {
+            const std::string getData() {
                 return data;
             }
 
         private:
-            std::string_view data;
+            std::string data;
             Node* leftChild;
             Node* rightChild;
             Node* middleChild;
