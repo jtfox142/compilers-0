@@ -68,13 +68,15 @@ int main(int argc, char* argv[]) {
     printToTerminal(preTreeInput);
 
     std::cout << "MAIN: root in main is: " << root->getData() << std::endl;
+    
     std::cout << "\nPrinting preorder tree traversal." << std::endl;
     tree::printPreorder(root, 0);
-    /*
-    
-    tree::printInorder(root);
-    tree::printPostorder(root);
-    */
+
+    std::cout << "\nPrinting inorder tree traversal." << std::endl;
+    tree::printInorder(root, 0);
+
+    std::cout << "\nPrinting postorder tree traversal." << std::endl;
+    tree::printPostorder(root, 0);
 
     return 0;
 }

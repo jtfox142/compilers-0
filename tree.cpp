@@ -23,8 +23,7 @@ node::Node* tree::buildTree(std::deque<std::string> preTreeInput, node::Node* ro
 void tree::printPreorder(node::Node *root, int level) {
     if(root == NULL) return;
 
-    //TODO Change 9 to a variable or something.
-    std::cout << std::setw(level * 2) << level << std::setw(9) << root->getData() << std::endl;
+    std::cout << std::setw(level * 2) << level << std::setw(12) << root->getData() << std::endl;
 
     printPreorder(root->getLeftChild(), level+1);
     printPreorder(root->getMiddleChild(), level+1);
@@ -33,12 +32,24 @@ void tree::printPreorder(node::Node *root, int level) {
 
 //left, root (taking you down middle), right
 void tree::printInorder(node::Node* root, int level) {
+    if(root == NULL) return;
 
+    printInorder(root->getLeftChild(), level+1);
+    std::cout << std::setw(level * 2) << level << std::setw(12) << root->getData() << std::endl;
+
+    printInorder(root->getMiddleChild(), level+1);
+    printInorder(root->getRightChild(), level+1);
 }
 
 //left, middle, right, root
 void tree::printPostorder(node::Node* root, int level) {
+    if(root == NULL) return;
 
+    printPostorder(root->getLeftChild(), level+1);
+    printPostorder(root->getMiddleChild(), level+1);
+    printPostorder(root->getRightChild(), level+1);
+
+    std::cout << std::setw(level * 2) << level << std::setw(12) << root->getData() << std::endl;
 }
 
 //Inefficient, but it works. Would love to optimize later
