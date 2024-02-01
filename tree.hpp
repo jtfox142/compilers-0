@@ -8,13 +8,13 @@
 
 namespace tree {
 
-    node::Node* buildTree(std::deque<std::string>);
+    node::Node* buildTree(std::deque<std::string>, node::Node*);
 
     void printPreorder(node::Node*, int);
     void printInorder(node::Node*, int);
     void printPostorder(node::Node*, int);
 
-    node::Node* insert(std::string, node::Node*);
+    void insert(std::string, node::Node*);
 
 } //namespace tree
 

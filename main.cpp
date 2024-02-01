@@ -59,11 +59,16 @@ int main(int argc, char* argv[]) {
         std::cerr << ex.what() << '\n';
     }
     
-    node::Node *root = tree::buildTree(preTreeInput);
+    //Initialize the root node
+    node::Node *root = new node::Node(preTreeInput.front());
+    preTreeInput.pop_front();
+
+    tree::buildTree(preTreeInput, root);
 
     printToTerminal(preTreeInput);
 
-    std::cout << "Printing preorder tree traversal." << std::endl;
+    std::cout << "MAIN: root in main is: " << root->getData() << std::endl;
+    std::cout << "\nPrinting preorder tree traversal." << std::endl;
     tree::printPreorder(root, 0);
     /*
     
