@@ -20,8 +20,7 @@ int main(int argc, char* argv[]) {
         * Pull input parsing out into its own file
             * Error upon bad input (like % or $) 
         * Tree functions
-            * Build tree
-            * Traversals
+            * push traversals into files
     */
 
     //Holds each individual word prior to being placed into the tree.
@@ -41,8 +40,6 @@ int main(int argc, char* argv[]) {
         std::cout << "Please enter your input: ";
         std::getline(std::cin, userInput);
 
-        std::cout << "\nuserInput variable contents: " << userInput << std::endl;
-
         defaultFile << userInput;
         defaultFile.close();
 
@@ -50,24 +47,24 @@ int main(int argc, char* argv[]) {
     }
     else { //Otherwise, attempt to use the filename provided to the executable
         std::string fileName = argv[1];
+        std::cout << "Filename: " << fileName << std::endl;
     }
 
-    //
     try {
         readFromFile(fileName, &preTreeInput);
     } catch(const std::exception& ex) {
         std::cerr << ex.what() << '\n';
+        return EXIT_FAILURE;
     }
     
+    //TODO for testing purposes only. Delete later.
+    printToTerminal(preTreeInput);
+
     //Initialize the root node
     node::Node *root = new node::Node(preTreeInput.front());
     preTreeInput.pop_front();
 
     tree::buildTree(preTreeInput, root);
-
-    printToTerminal(preTreeInput);
-
-    std::cout << "MAIN: root in main is: " << root->getData() << std::endl;
     
     std::cout << "\nPrinting preorder tree traversal." << std::endl;
     tree::printPreorder(root, 0);
@@ -82,14 +79,15 @@ int main(int argc, char* argv[]) {
 }
 
 //Pushes file data onto a deque, which is then used to build the tree
-void readFromFile(std::string filename, std::deque<std::string>* input) {
-    std::ifstream inputFile (filename.c_str());
+void readFromFile(std::string fileName, std::deque<std::string>* input) {
+    std::ifstream inputFile (fileName.c_str());
     std::string word;
 
     if(inputFile.is_open()) {
+        std::cout << "File " << fileName << " is open." << std::endl;
         while(!inputFile.eof()) {
             //Not sure if I need to do this every time, but the files should be small enough that the extra overhead will not matter
-            if(inputFile.bad() || inputFile.fail()) {
+            if(inputFile.fail() || inputFile.bad()) {
                 throw std::runtime_error("ERROR: bad file read");
             }
 
@@ -98,9 +96,10 @@ void readFromFile(std::string filename, std::deque<std::string>* input) {
         }
     }
     else {
-        throw std::runtime_error("ERROR: could not open file");
+        throw std::runtime_error("ERROR: could not open file. Possible bad file name.");
     }
 
+    inputFile.close();
     std::cout << "File read complete. preTreeInput deque has been filled." << std::endl;
 }
 

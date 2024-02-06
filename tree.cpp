@@ -65,7 +65,6 @@ void tree::insert(std::string word, node::Node* root) {
             tempNodeTwo = tempNodeOne;
             //Get the value that the current node is holding
             std::string tempData = tempNodeOne->getData();
-            std::cout << "TempData is " << tempData << std::endl;
 
             //Compare the new value to the current value
             if(word.at(0) < tempData.at(0)) {
