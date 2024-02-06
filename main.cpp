@@ -46,7 +46,7 @@ int main(int argc, char* argv[]) {
         std::cout << "\nDefault file has received input.\n";
     }
     else { //Otherwise, attempt to use the filename provided to the executable
-        std::string fileName = argv[1];
+        fileName = argv[1];
         std::cout << "Filename: " << fileName << std::endl;
     }
 
@@ -80,6 +80,7 @@ int main(int argc, char* argv[]) {
 
 //Pushes file data onto a deque, which is then used to build the tree
 void readFromFile(std::string fileName, std::deque<std::string>* input) {
+    std::cout << "filename inside of read function: " << fileName.c_str() << std::endl;
     std::ifstream inputFile (fileName.c_str());
     std::string word;
 
