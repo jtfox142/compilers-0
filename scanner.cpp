@@ -1,5 +1,3 @@
-//Inspiration for options parsing code taken from:
-//https://medium.com/@mostsignificant/3-ways-to-parse-command-line-arguments-in-c-quick-do-it-yourself-or-comprehensive-36913284460f
 #include "scanner.hpp"
 
 #include <vector>
@@ -53,7 +51,7 @@ void scanner::readFromFile() {
     if(inputFile.is_open()) {
         //std::cout << "File " << _fileName << " is open." << std::endl;
         while(!inputFile.eof()) {
-            //Not sure if I need to do this every time, but the files should be small enough that the extra overhead will not matter
+            
             if(inputFile.fail() || inputFile.bad()) {
                 throw std::runtime_error("ERROR: bad file read");
             }

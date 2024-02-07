@@ -1,5 +1,5 @@
-#include "node.hpp"
 #include "tree.hpp"
+#include "node.hpp"
 
 #include <iostream>
 #include <iomanip>
@@ -7,7 +7,7 @@
 #include <fstream>
 
 node::Node* tree::buildTree(std::deque<std::string> preTreeInput, node::Node* root) {
-    //Compiler won't allow 'auto'
+    //Compiler won't allow 'auto' :(
     std::deque<std::string>::iterator iterator;
 
     //std::cout << "Building the tree." << std::endl;

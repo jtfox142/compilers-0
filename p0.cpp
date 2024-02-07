@@ -1,20 +1,14 @@
+#include "node.hpp"
+#include "tree.hpp"
+#include "scanner.hpp"
+
 #include <iostream>
 #include <deque>
 #include <string>
 #include <stdexcept>
 #include <fstream>
-#include "node.hpp"
-#include "tree.hpp"
-#include "scanner.hpp"
 
 int main(int argc, char* argv[]) {
-
-    /*
-    TODO
-        * Tree functions
-            * Change number outputs to char outputs
-    */
-
     //Process any command line input and intake keyboard input, if necessary 
     scanner::setFileName(argc, argv);
 
