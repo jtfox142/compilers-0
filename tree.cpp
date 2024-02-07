@@ -75,8 +75,8 @@ void tree::outputTrees(node::Node *root, std::string fileName) {
 void tree::printPreorder(node::Node *root, int level, std::ofstream &file) {
     if(root == NULL) return;
 
-    std::cout << std::setw(level * 2) << level << std::setw(12) << root->getData() << std::endl;
-    file << std::setw(level * 2) << level << std::setw(12) << root->getData() << std::endl;
+    std::cout << std::setw(level * 2) << root->getData().at(0) << std::setw(12) << root->getData() << std::endl;
+    file << std::setw(level * 2) << root->getData().at(0) << std::setw(12) << root->getData() << std::endl;
 
     printPreorder(root->getLeftChild(), level+1, file);
     printPreorder(root->getMiddleChild(), level+1, file);
@@ -88,8 +88,8 @@ void tree::printInorder(node::Node* root, int level, std::ofstream &file) {
     if(root == NULL) return;
 
     printInorder(root->getLeftChild(), level+1, file);
-    std::cout << std::setw(level * 2) << level << std::setw(12) << root->getData() << std::endl;
-    file << std::setw(level * 2) << level << std::setw(12) << root->getData() << std::endl;
+    std::cout << std::setw(level * 2) << root->getData().at(0) << std::setw(12) << root->getData() << std::endl;
+    file << std::setw(level * 2) << root->getData().at(0) << std::setw(12) << root->getData() << std::endl;
 
     printInorder(root->getMiddleChild(), level+1, file);
     printInorder(root->getRightChild(), level+1, file);
@@ -103,8 +103,8 @@ void tree::printPostorder(node::Node* root, int level, std::ofstream &file) {
     printPostorder(root->getMiddleChild(), level+1, file);
     printPostorder(root->getRightChild(), level+1, file);
 
-    std::cout << std::setw(level * 2) << level << std::setw(12) << root->getData() << std::endl;
-    file << std::setw(level * 2) << level << std::setw(12) << root->getData() << std::endl;
+    std::cout << std::setw(level * 2) << root->getData().at(0) << std::setw(12) << root->getData() << std::endl;
+    file << std::setw(level * 2) << root->getData().at(0) << std::setw(12) << root->getData() << std::endl;
 }
 
 //Inefficient, but it works. Would love to optimize later
