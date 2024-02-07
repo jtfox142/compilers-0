@@ -6,7 +6,6 @@
 #include <fstream>
 #include <iostream>
 #include <deque>
-#include <regex>
 
 namespace {
 
@@ -46,8 +45,6 @@ void scanner::readFromFile() {
     std::ifstream inputFile (_fileName.c_str());
     std::string word;
 
-    const std::regex pattern("^[A-Za-z]+$");
-
     if(inputFile.is_open()) {
         //std::cout << "File " << _fileName << " is open." << std::endl;
         while(!inputFile.eof()) {
@@ -59,8 +56,10 @@ void scanner::readFromFile() {
             inputFile >> word;
 
             //Test if the input contains special characters or numbers
-            if(!std::regex_match(word, pattern)) {
-                throw std::runtime_error("ERROR: Input file contains illegal characters.");
+            for(std::string::iterator it = word.begin(); it != word.end(); ++it) {
+                if(!isalpha(*it)) {
+                    throw std::runtime_error("ERROR: Input file contains illegal characters.");
+                }
             }
 
             _userInput.push_back(word);
