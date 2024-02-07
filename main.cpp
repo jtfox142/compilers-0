@@ -5,6 +5,7 @@
 #include <fstream>
 #include "node.hpp"
 #include "tree.hpp"
+#include "scanner.hpp"
 
 //Function prototypes
 void readFromFile(std::string, std::deque<std::string>*);
@@ -24,38 +25,17 @@ int main(int argc, char* argv[]) {
     */
 
     //Holds each individual word prior to being placed into the tree.
-    std::deque<std::string> preTreeInput;
 
-    std::string fileName;
-
-    //If there are no provided args, initiate place user input into a temporary file
-    //The first argument should always be the path to the program
-    if(argc <= 1) {
-        std::ofstream defaultFile;
-        fileName = "default.txt";
-        //Need to convert string to c string for .open() function call
-        defaultFile.open(fileName.c_str(), std::ios::out | std::ios::trunc);
-
-        std::string userInput;
-        std::cout << "Please enter your input: ";
-        std::getline(std::cin, userInput);
-
-        defaultFile << userInput;
-        defaultFile.close();
-
-        std::cout << "\nDefault file has received input.\n";
-    }
-    else { //Otherwise, attempt to use the filename provided to the executable
-        fileName = argv[1];
-        std::cout << "Filename: " << fileName << std::endl;
-    }
+    scanner::getFileName(argc, argv);
 
     try {
-        readFromFile(fileName, &preTreeInput);
+        scanner::readFromFile();
     } catch(const std::exception& ex) {
         std::cerr << ex.what() << '\n';
         return EXIT_FAILURE;
     }
+
+    std::deque<std::string> preTreeInput = scanner::userInput();
     
     //TODO for testing purposes only. Delete later.
     printToTerminal(preTreeInput);
