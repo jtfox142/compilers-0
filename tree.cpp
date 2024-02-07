@@ -10,7 +10,7 @@ node::Node* tree::buildTree(std::deque<std::string> preTreeInput, node::Node* ro
     //Compiler won't allow 'auto'
     std::deque<std::string>::iterator iterator;
 
-    std::cout << "Beginning to build the tree." << std::endl;
+    std::cout << "Building the tree." << std::endl;
 
     //Iterator points to one word of input at a time
     for(iterator = preTreeInput.begin(); iterator != preTreeInput.end(); iterator++) {
@@ -109,41 +109,41 @@ void tree::printPostorder(node::Node* root, int level, std::ofstream &file) {
 
 //Inefficient, but it works. Would love to optimize later
 void tree::insert(std::string word, node::Node* root) {
-    std::cout << "Inserting " << word << " into the tree." << std::endl;
+    //std::cout << "Inserting " << word << " into the tree." << std::endl;
         
-        //temporary nodes for traversing the tree
-        node::Node* tempNodeOne = root;
-        node::Node* tempNodeTwo = NULL;
+    //temporary nodes for traversing the tree
+    node::Node* tempNodeOne = root;
+    node::Node* tempNodeTwo = NULL;
 
-        //Find where the new node should go
-        while(tempNodeOne != NULL) {
-            tempNodeTwo = tempNodeOne;
-            //Get the value that the current node is holding
-            std::string tempData = tempNodeOne->getData();
+    //Find where the new node should go
+    while(tempNodeOne != NULL) {
+        tempNodeTwo = tempNodeOne;
+        //Get the value that the current node is holding
+        std::string tempData = tempNodeOne->getData();
 
-            //Compare the new value to the current value
-            if(word.at(0) < tempData.at(0)) {
-                tempNodeOne = tempNodeOne->getLeftChild();
-            }
-            else if(word.at(0) > tempData.at(0)) {
-                tempNodeOne = tempNodeOne->getRightChild();
-            }
-            else if(word.at(0) == tempData.at(0)) {
-                tempNodeOne = tempNodeOne->getMiddleChild();
-            }
-        } 
+        //Compare the new value to the current value
+        if(word.at(0) < tempData.at(0)) {
+            tempNodeOne = tempNodeOne->getLeftChild();
+        }
+        else if(word.at(0) > tempData.at(0)) {
+            tempNodeOne = tempNodeOne->getRightChild();
+        }
+        else if(word.at(0) == tempData.at(0)) {
+            tempNodeOne = tempNodeOne->getMiddleChild();
+        }
+    } 
 
-        //If the while loop is broken, then the tempNodeOne is at a NULL address. This is where the new node should go
-        if(word.at(0) < tempNodeTwo->getData().at(0)) {
-            tempNodeTwo->setLeftChild(word);
-            std::cout << word << " has been inserted on the left." << std::endl;
-        }
-        else if(word.at(0) == tempNodeTwo->getData().at(0)) {
-            tempNodeTwo->setMiddleChild(word);
-            std::cout << word << " has been inserted in the middle." << std::endl;
-        }
-        else if(word.at(0) > tempNodeTwo->getData().at(0)) {
-            std::cout << word << " has been inserted on the right." << std::endl;
-            tempNodeTwo->setRightChild(word);
-        }
+    //If the while loop is broken, then the tempNodeOne is at a NULL address. This is where the new node should go
+    if(word.at(0) < tempNodeTwo->getData().at(0)) {
+        tempNodeTwo->setLeftChild(word);
+        //std::cout << word << " has been inserted on the left." << std::endl;
+    }
+    else if(word.at(0) == tempNodeTwo->getData().at(0)) {
+        tempNodeTwo->setMiddleChild(word);
+        //std::cout << word << " has been inserted in the middle." << std::endl;
+    }
+    else if(word.at(0) > tempNodeTwo->getData().at(0)) {
+        std::cout << word << " has been inserted on the right." << std::endl;
+        //tempNodeTwo->setRightChild(word);
+    }
 }

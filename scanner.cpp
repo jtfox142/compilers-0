@@ -8,6 +8,7 @@
 #include <fstream>
 #include <iostream>
 #include <deque>
+#include <regex>
 
 namespace {
 
@@ -16,13 +17,15 @@ namespace {
 
 } //namespace
 
+//If there are no provided args, place user input into default.txt
 void scanner::setFileName(int argc, char* argv[]) {
-
-    //If there are no provided args, initiate place user input into a temporary file
     //The first argument should always be the path to the program
     if(argc <= 1) {
+        //std::cout << "Opening a default file to handle input." << std::endl;
+
         std::ofstream defaultFile;
         _fileName = "default.txt";
+
         //Need to convert string to c string for .open() function call
         defaultFile.open(_fileName.c_str(), std::ios::out | std::ios::trunc);
 
@@ -32,7 +35,7 @@ void scanner::setFileName(int argc, char* argv[]) {
         defaultFile << userInput;
         defaultFile.close();
 
-        std::cout << "\nDefault file has received input.\n";
+        //std::cout << "\nDefault file has received input.\n";
     }
     else { //Otherwise, attempt to use the filename provided to the executable
         _fileName = argv[1];
@@ -40,13 +43,15 @@ void scanner::setFileName(int argc, char* argv[]) {
 }
 
 //Pushes file data onto a deque, which is then used to build the tree
+//Also checks for bad input, like words that start with special characters
 void scanner::readFromFile() {
-    std::cout << "filename inside of read function: " << _fileName.c_str() << std::endl;
     std::ifstream inputFile (_fileName.c_str());
     std::string word;
 
+    const std::regex pattern("^[A-Za-z]+$");
+
     if(inputFile.is_open()) {
-        std::cout << "File " << _fileName << " is open." << std::endl;
+        //std::cout << "File " << _fileName << " is open." << std::endl;
         while(!inputFile.eof()) {
             //Not sure if I need to do this every time, but the files should be small enough that the extra overhead will not matter
             if(inputFile.fail() || inputFile.bad()) {
@@ -54,6 +59,12 @@ void scanner::readFromFile() {
             }
 
             inputFile >> word;
+
+            //Test if the input contains special characters or numbers
+            if(!std::regex_match(word, pattern)) {
+                throw std::runtime_error("ERROR: Input file contains illegal characters.");
+            }
+
             _userInput.push_back(word);
         }
     }
@@ -62,7 +73,7 @@ void scanner::readFromFile() {
     }
 
     inputFile.close();
-    std::cout << "File read complete. preTreeInput deque has been filled." << std::endl;
+    //std::cout << "File read complete. preTreeInput deque has been filled." << std::endl;
 }
 
 const std::deque<std::string>& scanner::getUserInput() {

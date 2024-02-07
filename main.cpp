@@ -21,7 +21,6 @@ int main(int argc, char* argv[]) {
         * Input handling
             * Error upon bad input (like % or $) 
         * Tree functions
-            * push traversals into files
             * Change number outputs to char outputs
     */
 
@@ -38,9 +37,6 @@ int main(int argc, char* argv[]) {
 
     std::deque<std::string> preTreeInput = scanner::getUserInput();
     
-    //TODO for testing purposes only. Delete later.
-    printToTerminal(preTreeInput);
-
     //Initialize the root node
     node::Node *root = new node::Node(preTreeInput.front());
     preTreeInput.pop_front();
@@ -76,14 +72,4 @@ void readFromFile(std::string fileName, std::deque<std::string>* input) {
 
     inputFile.close();
     std::cout << "File read complete. preTreeInput deque has been filled." << std::endl;
-}
-
-//For testing purposes only, delete later.
-void printToTerminal(std::deque<std::string> preTreeInput) {
-    std::cout << "Printing preTreeInput to terminal." << std::endl;
-
-    std::deque<std::string>::iterator iterator;
-
-    for(iterator = preTreeInput.begin(); iterator != preTreeInput.end(); iterator++)
-        std::cout << *iterator << std::endl;
 }
