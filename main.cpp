@@ -18,15 +18,16 @@ int main(int argc, char* argv[]) {
 
     /*
     TODO
-        * Pull input parsing out into its own file
+        * Input handling
             * Error upon bad input (like % or $) 
         * Tree functions
             * push traversals into files
+            * Change number outputs to char outputs
     */
 
     //Holds each individual word prior to being placed into the tree.
 
-    scanner::getFileName(argc, argv);
+    scanner::setFileName(argc, argv);
 
     try {
         scanner::readFromFile();
@@ -35,7 +36,7 @@ int main(int argc, char* argv[]) {
         return EXIT_FAILURE;
     }
 
-    std::deque<std::string> preTreeInput = scanner::userInput();
+    std::deque<std::string> preTreeInput = scanner::getUserInput();
     
     //TODO for testing purposes only. Delete later.
     printToTerminal(preTreeInput);
@@ -46,14 +47,7 @@ int main(int argc, char* argv[]) {
 
     tree::buildTree(preTreeInput, root);
     
-    std::cout << "\nPrinting preorder tree traversal." << std::endl;
-    tree::printPreorder(root, 0);
-
-    std::cout << "\nPrinting inorder tree traversal." << std::endl;
-    tree::printInorder(root, 0);
-
-    std::cout << "\nPrinting postorder tree traversal." << std::endl;
-    tree::printPostorder(root, 0);
+    tree::outputTrees(root, scanner::getFileName());
 
     return 0;
 }

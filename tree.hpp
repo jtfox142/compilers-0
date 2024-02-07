@@ -7,12 +7,13 @@
 #include <string>
 
 namespace tree {
-
+    
     node::Node* buildTree(std::deque<std::string>, node::Node*);
+    void outputTrees(node::Node*, std::string);
 
-    void printPreorder(node::Node*, int);
-    void printInorder(node::Node*, int);
-    void printPostorder(node::Node*, int);
+    void printPreorder(node::Node*, int, std::ofstream&);
+    void printInorder(node::Node*, int, std::ofstream&);
+    void printPostorder(node::Node*, int, std::ofstream&);
 
     void insert(std::string, node::Node*);
 

@@ -16,7 +16,7 @@ namespace {
 
 } //namespace
 
-void scanner::getFileName(int argc, char* argv[]) {
+void scanner::setFileName(int argc, char* argv[]) {
 
     //If there are no provided args, initiate place user input into a temporary file
     //The first argument should always be the path to the program
@@ -65,6 +65,10 @@ void scanner::readFromFile() {
     std::cout << "File read complete. preTreeInput deque has been filled." << std::endl;
 }
 
-const std::deque<std::string>& scanner::userInput() {
+const std::deque<std::string>& scanner::getUserInput() {
     return _userInput;
+}
+
+const std::string scanner::getFileName() {
+    return _fileName;
 }

@@ -15,4 +15,4 @@ scanner.o: scanner.cpp scanner.hpp
 	$(CC) $(CFLAGS) -c scanner.cpp
 
 clean: 
-	rm *.o main
+	rm *.o main *.preorder *.postorder *inorder

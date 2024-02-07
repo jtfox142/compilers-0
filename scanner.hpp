@@ -7,11 +7,13 @@
 
 namespace scanner {
 
-    void getFileName(int argc, char* argv[]);
+    void setFileName(int argc, char* argv[]);
+
+    const std::string getFileName();
 
     void readFromFile();
 
-    const std::deque<std::string>& userInput();
+    const std::deque<std::string>& getUserInput();
 
 };  // namespace inputParsing
 
