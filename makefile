@@ -1,6 +1,6 @@
 CC = g++
 
-CFLAGS = -Wall -std=c++14
+CFLAGS = -Wall -std=c++1y
 
 p0: p0.o tree.o scanner.o
 	$(CC) $(CFLAGS) -o p0 p0.o tree.o scanner.o
