@@ -17,7 +17,7 @@ int main(int argc, char* argv[]) {
         scanner::readFromFile();
     } catch(const std::exception& ex) {
         std::cerr << ex.what() << '\n';
-        return EXIT_FAILURE;
+        return 1;
     }
 
     std::deque<std::string> preTreeInput = scanner::getUserInput();
