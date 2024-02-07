@@ -10,7 +10,7 @@ node::Node* tree::buildTree(std::deque<std::string> preTreeInput, node::Node* ro
     //Compiler won't allow 'auto'
     std::deque<std::string>::iterator iterator;
 
-    std::cout << "Building the tree." << std::endl;
+    //std::cout << "Building the tree." << std::endl;
 
     //Iterator points to one word of input at a time
     for(iterator = preTreeInput.begin(); iterator != preTreeInput.end(); iterator++) {
@@ -143,7 +143,7 @@ void tree::insert(std::string word, node::Node* root) {
         //std::cout << word << " has been inserted in the middle." << std::endl;
     }
     else if(word.at(0) > tempNodeTwo->getData().at(0)) {
-        std::cout << word << " has been inserted on the right." << std::endl;
-        //tempNodeTwo->setRightChild(word);
+        tempNodeTwo->setRightChild(word);
+        //std::cout << word << " has been inserted on the right." << std::endl;
     }
 }

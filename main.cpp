@@ -47,29 +47,3 @@ int main(int argc, char* argv[]) {
 
     return 0;
 }
-
-//Pushes file data onto a deque, which is then used to build the tree
-void readFromFile(std::string fileName, std::deque<std::string>* input) {
-    std::cout << "filename inside of read function: " << fileName.c_str() << std::endl;
-    std::ifstream inputFile (fileName.c_str());
-    std::string word;
-
-    if(inputFile.is_open()) {
-        std::cout << "File " << fileName << " is open." << std::endl;
-        while(!inputFile.eof()) {
-            //Not sure if I need to do this every time, but the files should be small enough that the extra overhead will not matter
-            if(inputFile.fail() || inputFile.bad()) {
-                throw std::runtime_error("ERROR: bad file read");
-            }
-
-            inputFile >> word;
-            input->push_back(word);
-        }
-    }
-    else {
-        throw std::runtime_error("ERROR: could not open file. Possible bad file name.");
-    }
-
-    inputFile.close();
-    std::cout << "File read complete. preTreeInput deque has been filled." << std::endl;
-}
