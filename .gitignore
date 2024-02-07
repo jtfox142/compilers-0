@@ -4,5 +4,6 @@ p0
 *.preorder
 *.postorder
 *.inorder
+p0_test*
 
 .vscode
